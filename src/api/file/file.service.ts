@@ -1,16 +1,17 @@
-import { AwsS3Service } from '@/services/aws/aws-s3.service';
+import { StorageFactory } from '@/services/storage/storage.factory';
 import { File } from '@nest-lab/fastify-multer';
 import { Injectable } from '@nestjs/common';
 
 @Injectable()
 export class FileService {
-  constructor(private readonly awsS3Service: AwsS3Service) {}
+  constructor(private readonly storageFactory: StorageFactory) {}
 
   async uploadFile(file: File) {
     if (file.destination) {
       return file;
     }
-    return await this.awsS3Service.uploadFile(file, {
+    const storageProvider = this.storageFactory.getProvider();
+    return await storageProvider.uploadFile(file, {
       filename: file.originalname,
     });
   }
@@ -19,9 +20,10 @@ export class FileService {
     if (files[0].destination) {
       return files;
     }
+    const storageProvider = this.storageFactory.getProvider();
     return await Promise.all(
       files.map((file) =>
-        this.awsS3Service.uploadFile(file, {
+        storageProvider.uploadFile(file, {
           filename: file.originalname,
         }),
       ),
