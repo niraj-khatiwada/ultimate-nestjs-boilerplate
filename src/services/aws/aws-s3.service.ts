@@ -1,3 +1,4 @@
+import { ICloudStorageProvider } from '@/common/storage/storage-provider.interface';
 import { GlobalConfig } from '@/config/config.type';
 import {
   PutObjectCommand,
@@ -14,7 +15,7 @@ import {
 } from '../../config/aws/aws-config.types';
 
 @Injectable()
-export class AwsS3Service {
+export class AwsS3Service implements ICloudStorageProvider {
   private s3Client: S3Client;
 
   constructor(private readonly configService: ConfigService<GlobalConfig>) {

@@ -31,6 +31,7 @@ import {
   default as bullConfig,
 } from './config/bull/bull.config';
 import { default as useBullFactory } from './config/bull/bull.factory';
+import { default as gcpConfig } from './config/gcp/gcp.config';
 import grafanaConfig from './config/grafana/grafana.config';
 import { default as sentryConfig } from './config/sentry/sentry.config';
 import { default as throttlerConfig } from './config/throttler/throttler.config';
@@ -62,6 +63,7 @@ export class AppModule {
             sentryConfig,
             throttlerConfig,
             awsConfig,
+            gcpConfig,
             grafanaConfig,
           ],
           envFilePath: ['.env'],

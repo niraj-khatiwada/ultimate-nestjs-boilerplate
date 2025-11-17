@@ -49,6 +49,7 @@
     "@fastify/cookie": "9.4.0",
     "@fastify/multipart": "^9.0.1",
     "@fastify/static": "^7.0.4",
+    "@google-cloud/storage": "^7.17.3",
     "@nest-lab/fastify-multer": "^1.2.0",
     "@nest-lab/throttler-storage-redis": "^1.0.0",
     "@nestjs-modules/mailer": "^2.0.2",
